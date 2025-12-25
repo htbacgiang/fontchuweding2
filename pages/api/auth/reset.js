@@ -75,14 +75,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: "Mật khẩu mới không được trùng với mật khẩu cũ." });
     }
 
-    // Mã hóa mật khẩu mới
-    const cryptedPassword = await bcrypt.hash(password, 12);
-
-    // Cập nhật mật khẩu và xóa mã số đã sử dụng
-    user.password = cryptedPassword;
+    // Cập nhật mật khẩu (plain text - pre-save hook sẽ tự động hash)
+    // và xóa mã số đã sử dụng
+    user.password = password; // Gán plain text, pre-save hook sẽ hash
     user.resetCode = null;
     user.resetCodeExpires = null;
-    await user.save();
+    await user.save(); // Pre-save hook sẽ tự động hash mật khẩu
 
     await db.disconnectDb();
 
