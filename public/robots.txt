@@ -1,0 +1,23 @@
+# *
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ecobacgiang.vn/sitemap-fonts.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /_next/
+
+# Allow important pages
+Allow: /font-chu
+Allow: /danh-sach-yeu-thich
+Allow: /lich-su
+Allow: /san-pham
+Allow: /tin-tuc
+Allow: /lien-he
+
+# Crawl delay for better server performance
+Crawl-delay: 1
